@@ -33,7 +33,7 @@ public class User implements UserDetails {
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
-            name = "users_roles",
+            name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
@@ -42,7 +42,15 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(Long id,String email,String password, String firstName,String lastName, Set<Role> roles) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return id == user.id && email.equals(user.email) && password.equals(user.password) && firstName.equals(user.firstName) && lastName.equals(user.lastName) && roles.equals(user.roles);
+    }
+
+    public User(Long id, String email, String password, String firstName, String lastName, Set<Role> roles) {
         this.email = email;
         this.id = id;
         this.roles = roles;

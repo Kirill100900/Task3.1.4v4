@@ -15,7 +15,9 @@
     <description>PP_3_1_4</description>
     <properties>
         <java.version>1.8</java.version>
+        <property name="hibernate.enable_lazy_load_no_trans" value="true"/>
     </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
